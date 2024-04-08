@@ -1,18 +1,11 @@
-'''
-Autor: Alan Delgado
-Fecha: 23/03/2021
-
-ESCUELA SUPERIOR DE CÓMPUTO - IPN
-ANALISIS DE ALGORTIMOS
-
---- Ddo un laberinto aleatrio generado en una matriz, encontrar la solución por
-    medio de backtracking.
-
-para su correcto funcionamiento tener en la misma carpeta o proyecto python
-el archivo maze_generator que crea los laberintos aleatorios
-
-COMPLEJIDAD DEL ALGORTIMO: O(n^2)
-'''
+# CIC IPN / MCIC
+# Programa: laberinto.py
+# Descripción: Para un laberinto aleatrio generado en una matriz, encuentra la solución con backtracking segun la entrada.
+# Autor: Alan Delgado
+# Fecha de creación: Marzo 2024
+# Versión: 1.0
+# Dependencias: maze_generator.py - para las pruebas
+# Complejidad temporal: O(n²)
 
 import maze_generator
 
