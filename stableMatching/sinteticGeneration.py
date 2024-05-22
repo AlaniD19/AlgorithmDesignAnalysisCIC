@@ -1,20 +1,18 @@
 import random
+from multiprocessing import Pool
+
+
+def generar_preferencias_parallel(item, lista2):
+    return item, random.sample(lista2, len(lista2))
 
 
 def generar_tablas(N):
-    # Genera listas de hombres y mujeres
     hombres = list(range(1, N + 1))
-    mujeres = list(range(N + 1, (N * 2 + 1)))
+    mujeres = list(range(N + 1, N * 2 + 1))
 
-    # Combina los hombres con sus preferencias de mujeres
-    tabla_hombres = {hombre: mujeres[:] for hombre in hombres}
-    for hombre in hombres:
-        random.shuffle(tabla_hombres[hombre])
-
-    # Combina las mujeres con sus preferencias de hombres
-    tabla_mujeres = {mujer: hombres[:] for mujer in mujeres}
-    for mujer in mujeres:
-        random.shuffle(tabla_mujeres[mujer])
+    with Pool() as pool:
+        tabla_hombres = dict(pool.starmap(generar_preferencias_parallel, [(hombre, mujeres) for hombre in hombres]))
+        tabla_mujeres = dict(pool.starmap(generar_preferencias_parallel, [(mujer, hombres) for mujer in mujeres]))
 
     return tabla_hombres, tabla_mujeres
 

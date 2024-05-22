@@ -54,10 +54,9 @@ def gale_shapley(hom_preferencias, muj_preferencias):
 
 
 def graphComplex(pathDocValues):
-    """
-    Despliega la gráfica de los valores de complejidad temporal.
-    Args: string: Ruta del archivo con los valores a graficar.
-    Returns: NA
+    """ Despliega la gráfica de los valores de complejidad temporal.
+        Args: string: Ruta del archivo con los valores a graficar.
+        Returns: NA
     """
     # Listas para almacenar los valores de n y tiempo
     n_values = []
@@ -67,25 +66,33 @@ def graphComplex(pathDocValues):
     with open(pathDocValues, 'r') as file:
         for i, line in enumerate(file, start=1):
             tiempo = float(line.strip())
-            n_values.append(2 ** i)  # Asumimos que n es 2^i
+            n_values.append((i ** 2)*3)  # Asumimos que n es 2^i
             tiempo_values.append(tiempo)
     # Graficar los datos
-    plt.plot(n_values, tiempo_values, marker='o', linestyle='-')
-    plt.title('Duración de la ejecución en función de n')
-    plt.xlabel('n (tamaño de entrada)')
+    plt.plot(n_values, tiempo_values, marker='o', linestyle='-', color='royalblue')
+    plt.title('Duración de la ejecución en función de $n$')
+    plt.xlabel('$n$ (tamaño de entrada)')
     plt.ylabel('Tiempo (segundos)')
-    plt.xscale('log')
-    plt.yscale('log')
+    #plt.title('Duración de la generación de datos de entrada en función de $n$')
+    #plt.title('Duración de la impresión del emparejamiento en función de $n$')
+
+    #plt.xscale('log', base=2)
+    #plt.yscale('log')
     #plt.grid(True, which="both", ls="--")
     plt.grid(True)
+    plt.savefig("execution.png", dpi=1000)
     plt.show()
 
 
 # Ejemplo de ejecución
 if __name__ == "__main__":
-    for n in range(0,13):
+    '''archivos = ["execution_times.txt", "generation_times.txt", "print_times.txt"]
+    for nombre_archivo in archivos:
+        with open(nombre_archivo, "w") as archivo:
+            archivo.write("")
+    for n in range(1,59):
         s_time_generation = time.perf_counter()
-        men_prefs, women_prefs = sinteticGeneration.generar_tablas(2**n)
+        men_prefs, women_prefs = sinteticGeneration.generar_tablas((n**2)*3)
         e_time_generation = time.perf_counter()
         generation_time = e_time_generation - s_time_generation
         s_time_algorithm = time.perf_counter()  # Iniciar medición de tiempo
@@ -93,7 +100,7 @@ if __name__ == "__main__":
         e_time_algorithm = time.perf_counter()  # Finalizar medición de tiempo
         execution_time = e_time_algorithm - s_time_algorithm
         s_time_print = time.perf_counter()
-        print("Matches: ", matches)
+        print(f"Matches {n}: {matches}")
         e_time_print = time.perf_counter()
         print_time = e_time_print - s_time_print
         # Guardar el tiempo de ejecución en un archivo
@@ -102,5 +109,7 @@ if __name__ == "__main__":
         with open("execution_times.txt", "a") as file:
             file.write(f"{execution_time:.8f}\n")
         with open("print_times.txt", "a") as file:
-            file.write(f"{print_time:.8f}\n")
+            file.write(f"{print_time:.8f}\n")'''
     graphComplex('execution_times.txt')
+    #graphComplex('generation_times.txt')
+    #graphComplex('print_times.txt')
