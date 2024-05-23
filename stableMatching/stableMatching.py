@@ -64,23 +64,23 @@ def graphComplex(pathDocValues):
 
     # Leer los datos desde el archivo de texto
     with open(pathDocValues, 'r') as file:
-        for i, line in enumerate(file, start=1):
+        for i, line in enumerate(file, start=2):
             tiempo = float(line.strip())
-            n_values.append((i ** 2)*3)  # Asumimos que n es 2^i
+            n_values.append((i ** 2)*3)
             tiempo_values.append(tiempo)
     # Graficar los datos
-    plt.plot(n_values, tiempo_values, marker='o', linestyle='-', color='royalblue')
-    plt.title('Duración de la ejecución en función de $n$')
+    plt.plot(n_values, tiempo_values, marker='o', linestyle='-', color='lightcoral')
+    #plt.title('Duración de la ejecución en función de $n$')
     plt.xlabel('$n$ (tamaño de entrada)')
     plt.ylabel('Tiempo (segundos)')
     #plt.title('Duración de la generación de datos de entrada en función de $n$')
-    #plt.title('Duración de la impresión del emparejamiento en función de $n$')
+    plt.title('Duración de la impresión del emparejamiento en función de $n$')
 
-    #plt.xscale('log', base=2)
+    plt.xscale('log', base=2)
     #plt.yscale('log')
     #plt.grid(True, which="both", ls="--")
     plt.grid(True)
-    plt.savefig("execution.png", dpi=1000)
+    plt.savefig("print.png", dpi=1000)
     plt.show()
 
 
@@ -110,6 +110,6 @@ if __name__ == "__main__":
             file.write(f"{execution_time:.8f}\n")
         with open("print_times.txt", "a") as file:
             file.write(f"{print_time:.8f}\n")'''
-    graphComplex('execution_times.txt')
+    #graphComplex('execution_times.txt')
     #graphComplex('generation_times.txt')
-    #graphComplex('print_times.txt')
+    graphComplex('print_times.txt')
