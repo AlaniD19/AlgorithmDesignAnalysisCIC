@@ -5,15 +5,6 @@
 # Fecha de creación: Marzo 2024
 # Versión: 1.0
 # Complejidad temporal: O(n²)
-'''
-    data = """3 m
-Xavier Amy Bertha Clare
-Yancey Bertha Amy Clare
-Zeus Amy Bertha Clare
-Amy Yancey Xavier Zeus
-Bertha Xavier Yancey Zeus
-Clare Xavier Yancey Zeus"""
-'''
 
 
 def gale_shapley(hom_preferencias, muj_preferencias):
@@ -59,21 +50,20 @@ def gale_shapley(hom_preferencias, muj_preferencias):
 
 # Ejemplo de ejecución
 if __name__ == "__main__":
-    #data = input()
-    data = """3 m
-Xavier Amy Bertha Clare
-Yancey Bertha Amy Clare
-Zeus Amy Bertha Clare
-Amy Yancey Xavier Zeus
-Bertha Xavier Yancey Zeus
-Clare Xavier Yancey Zeus"""
+    data = input()
     lines = data.splitlines()
-    print(lines)
 
     agents, proposition = lines[0].split()
     agents = int(agents)
-    lines = lines[1:]
-    print(lines)
+
+    # Inicializar una lista para las líneas restantes
+    lines = []
+
+    # Leer las siguientes líneas según el número de agents (2 * agents líneas)
+    for _ in range(2 * agents):
+        line = input()
+        lines.append(line)
+
     one_prefs = {}
     two_prefs = {}
 
@@ -89,6 +79,9 @@ Clare Xavier Yancey Zeus"""
         preferences = people[1:]
         two_prefs[key] = preferences
 
-    print(one_prefs)
-    print(two_prefs)
-    matches = gale_shapley(men_prefs, women_prefs)
+    if proposition == "m":
+        matches = gale_shapley(one_prefs, two_prefs)
+    else:
+        matches = gale_shapley(two_prefs, one_prefs)
+    for person in matches.keys():
+        print(person, matches[person])
