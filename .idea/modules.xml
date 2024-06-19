@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DISEÑO_ANALISIS_ALGORITMOS_.iml" filepath="$PROJECT_DIR$/.idea/DISEÑO_ANALISIS_ALGORITMOS_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../probabilidad_/.idea/PROBABILIDAD_PROC_ALEA_INF_.iml" filepath="$PROJECT_DIR$/../probabilidad_/.idea/PROBABILIDAD_PROC_ALEA_INF_.iml" />
     </modules>
   </component>
 </project>

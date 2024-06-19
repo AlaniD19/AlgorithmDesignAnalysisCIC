@@ -80,17 +80,17 @@ def graphComplex(pathDocValues):
     #plt.yscale('log')
     #plt.grid(True, which="both", ls="--")
     plt.grid(True)
-    plt.savefig("print.png", dpi=1000)
+    plt.savefig("exc.png", dpi=1000)
     plt.show()
 
 
 # Ejemplo de ejecución
 if __name__ == "__main__":
-    '''archivos = ["execution_times.txt", "generation_times.txt", "print_times.txt"]
+    archivos = ["execution_times.txt", "generation_times.txt", "print_times.txt"]
     for nombre_archivo in archivos:
         with open(nombre_archivo, "w") as archivo:
             archivo.write("")
-    for n in range(1,59):
+    for n in range(1,100):
         s_time_generation = time.perf_counter()
         men_prefs, women_prefs = sinteticGeneration.generar_tablas((n**2)*3)
         e_time_generation = time.perf_counter()
@@ -109,7 +109,7 @@ if __name__ == "__main__":
         with open("execution_times.txt", "a") as file:
             file.write(f"{execution_time:.8f}\n")
         with open("print_times.txt", "a") as file:
-            file.write(f"{print_time:.8f}\n")'''
+            file.write(f"{print_time:.8f}\n")
     #graphComplex('execution_times.txt')
     #graphComplex('generation_times.txt')
     graphComplex('print_times.txt')
